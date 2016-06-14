@@ -376,7 +376,7 @@ if (isWX) {
 <p>然而，我作为vim的非忠实粉丝，还是习惯用<code>up</code>/<code>down</code>/<code>left</code>/<code>right</code>方向键来移动光标，至于<code>k</code>/<code>j</code>/<code>h</code>/<code>l</code>是什么鬼，没听说过。然而，当我愉快地在<code>insert</code>模式下按下方向键时，<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>跳出来了……<strong> 哎!Vim大哥，我不是要唱字母歌的有木有！！！ </strong></p>
 <p>于是，我开始在google大大上搜寻解决方案，其中一篇文章<a href="http://vim.wikia.com/wiki/Fix_arrow_keys_that_display_A_B_C_D_on_remote_shell" target="_blank" rel="external">Fix arrow keys that display A B C D on remote shell</a> 给出了21种解决方案，真是“诚意满满”，然后我开始尝试。下面给出几个有代表性的。</p>
 <h1 id="1-改变term"><a href="#1-改变term" class="headerlink" title=" 1. 改变term "></a><strong> 1. 改变term </strong></h1><p>直接输入<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=<span class="keyword">ansi</span></span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="built_in">set</span> term=xterm</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=xterm</span><br></pre></td></tr></table></figure></p>
 <p>嗯，的确解决了问题。哎，等等，我好看的vim主题去哪了，作为外貌协会的我肯定不答应！再换一个。</p>
 <h1 id="2-用imap"><a href="#2-用imap" class="headerlink" title=" 2. 用imap "></a><strong> 2. 用imap </strong></h1><p>在vimrc文件中输入以下代码<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">imap</span> ^[OA <span class="symbol">&lt;ESC&gt;</span>ki  </span><br><span class="line"><span class="keyword">imap</span> ^[OB <span class="symbol">&lt;ESC&gt;</span>ji  </span><br><span class="line"><span class="keyword">imap</span> ^[OC <span class="symbol">&lt;ESC&gt;</span>li  </span><br><span class="line"><span class="keyword">imap</span> ^[OD <span class="symbol">&lt;ESC&gt;</span><span class="keyword">hi</span></span><br></pre></td></tr></table></figure></p>
 <p><strong> 注意，这里的<code>^[</code>要通过<code>&lt;C-v&gt;&lt;ESC&gt;</code>按出来。 </strong><br>嗯，的确是可以了，但是每次按完方向键，都会自动从<code>insert</code>模式回到<code>normal</code>模式，这也还是有点不爽。不过这个方案我还是忍了蛮久。</p>
@@ -390,7 +390,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac-vim-osx/">mac vim osx</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/" data-id="cipdkyh1h0009mx8pb0rz4z2o" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/" data-id="cipf152fc000ba68poqbk6mqp" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/#ds-thread" class="article-comment-link">评论</a>
         
