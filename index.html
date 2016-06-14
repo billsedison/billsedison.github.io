@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Journey of code</title>
+  <meta name="author" content="billsedison">
+  
+  <meta name="description" content="记录自己，记录生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="Journey of code"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Journey of code" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<script>
+    var _hmt = _hmt || [];
+(function() {
+ var hm = document.createElement("script");
+ hm.src = "//hm.baidu.com/hm.js?c76fb683b075a928970178afd59a97df";
+ var s = document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+
+
+
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Journey of code</a></h1>
+  <h2><a href="/">Note code, note life</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-27T15:06:36.000Z"><a href="/2015/09/27/javascript-notes/">2015-09-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/09/27/javascript-notes/">javascript-notes</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>Take notes from this post <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife" target="_blank" rel="external">Immediately-Invoked Function Expression(IIFE)</a></p>
+<ol>
+<li><p>Function declaration &amp; function expression<br>Now, whether you define a function like <code>function foo(){}</code> or <code>var foo = function(){}</code>, what you end up with is an identifier for a function, that you can invoke by putting parens (parentheses, ()) after it, like <code>foo()</code>.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Because a function defined like so can be invoked by putting () after</span></span><br><span class="line"><span class="comment">// the function name, like foo(), and because foo is just a reference to</span></span><br><span class="line"><span class="comment">// the function expression `function() &#123; /* code */ &#125;`...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...doesn't it stand to reason that the function expression itself can</span></span><br><span class="line"><span class="comment">// be invoked, just by putting () after it?</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;(); <span class="comment">// SyntaxError: Unexpected token (</span></span><br></pre></td></tr></table></figure>
+<p>As you can see, there’s a catch. When the parser encounters the function keyword in the global scope or inside a function, it treats it as a function declaration (statement), and not as a function expression, by default. If you don’t explicitly tell the parser to expect an expression, it sees what it thinks to be a function declaration without a name and throws a Sounters the function keyword in the global scope or inside a funct)</p>
+</li>
+<li><p>functions, parens, and SyntaxErrors<br>Interestingly enough, if you were to specify a name for that function and put parens immediately after it, the parser would also throw a SyntaxError, but for a different reason. While parens placed after an expression indicate that the expression is a function to be invoked, parens placed after a statement are totally separate from the preceding statment, and are simply a grouping operator (used as a means to control precedence of evaluation).</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// While this function declaration is now syntactically valid, it's still</span></span><br><span class="line"><span class="comment">// a statement, and the following set of parens is invalid because the</span></span><br><span class="line"><span class="comment">// grouping operator needs to contain an expression.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;(); <span class="comment">// SyntaxError: Unexpected token )</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Now, if you put an expression in the parens, no exception is thrown...</span></span><br><span class="line"><span class="comment">// but the function isn't executed either, because this:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;( <span class="number">1</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Is really just equivalent to this, a function declaration followed by a</span></span><br><span class="line"><span class="comment">// completely unrelated expression:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"></span><br><span class="line">( <span class="number">1</span> );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The solution: Immediately-Invoked Function Expression (IIFE)<br>Fortunately, the SyntaxError ‘fix’ is simple. The most widely accepted way to tell the parser to expect a function expression is just to wrap it in parens, because in JavaScript, parens can’t contain statements. At this point, when the parser encounters the <code>function</code> keyword, it knows to parse it as a function expression and not a function declaration.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Either of the following two patterns can be used to immediately invoke</span></span><br><span class="line"><span class="comment">// a function expression, utilizing the function's execution context to</span></span><br><span class="line"><span class="comment">// create "privacy."</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;()); <span class="comment">// Crockford recommends this one</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;)(); <span class="comment">// But this one works just as well</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Because the point of the parens or coercing operators is to disambiguate</span></span><br><span class="line"><span class="comment">// between function expressions and function declarations, they can be</span></span><br><span class="line"><span class="comment">// omitted when the parser already expects an expression (but please see the</span></span><br><span class="line"><span class="comment">// "important note" below).</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">10</span>; &#125;();</span><br><span class="line"><span class="literal">true</span> &amp;&amp; <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"><span class="number">0</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// If you don't care about the return value, or the possibility of making</span></span><br><span class="line"><span class="comment">// your code slightly harder to read, you can save a byte by just prefixing</span></span><br><span class="line"><span class="comment">// the function with a unary operator.</span></span><br><span class="line"></span><br><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">~<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">-<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">+<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Here's another variation, from @kuvos - I'm not sure of the performance</span></span><br><span class="line"><span class="comment">// implications, if any, of using the `new` keyword, but it works.</span></span><br><span class="line"><span class="comment">// http://twitter.com/kuvos/status/18209252090847232</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;() <span class="comment">// Only need parens if passing arguments</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>First class<br>something is first-class if it:</p>
+</li>
+</ol>
+<ul>
+<li>can be stored in variables and data structures</li>
+<li>can be passed as a parameter to a subroutine</li>
+<li>can be returned as the result of a subroutine</li>
+<li>can be constructed at runtime</li>
+<li>has intrinsic identity (independent of any given name)</li>
+</ul>
+<p>Closure example<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="function"><span class="keyword">function</span>(<span class="params">newName</span>) </span>&#123;</span><br><span class="line">        name = newName;</span><br><span class="line">    &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Closure<br>The important thing to realise is that a closure actually remembers its environment rather than its free variables, so if you define a new variable in the environment of the closure after the closure’s definition, it will be accessible inside the closure.</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-25T14:15:39.000Z"><a href="/2015/09/25/mac-vim-ABCD/">2015-09-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/09/25/mac-vim-ABCD/">mac-vim 按上下左右出现ABCD</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天把hexo迁移到mac上了，写hexo blog的利器自然是vim啦。果断下载自己的vimrc，稍微改改配置就用在了mac上，各种插件和体验都很好。</p>
+<p>然而，我作为vim的非忠实粉丝，还是习惯用<code>up</code>/<code>down</code>/<code>left</code>/<code>right</code>方向键来移动光标，至于<code>k</code>/<code>j</code>/<code>h</code>/<code>l</code>是什么鬼，没听说过。然而，当我愉快地在<code>insert</code>模式下按下方向键时，<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>跳出来了……<strong> 哎!Vim大哥，我不是要唱字母歌的有木有！！！ </strong></p>
+<p>于是，我开始在google大大上搜寻解决方案，其中一篇文章<a href="http://vim.wikia.com/wiki/Fix_arrow_keys_that_display_A_B_C_D_on_remote_shell" target="_blank" rel="external">Fix arrow keys that display A B C D on remote shell</a> 给出了21种解决方案，真是“诚意满满”，然后我开始尝试。下面给出几个有代表性的。</p>
+<h1 id="1-_改变term"><strong> 1. 改变term </strong></h1><p>直接输入<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=<span class="keyword">ansi</span></span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=xterm</span><br></pre></td></tr></table></figure></p>
+<p>嗯，的确解决了问题。哎，等等，我好看的vim主题去哪了，作为外貌协会的我肯定不答应！再换一个。</p>
+<h1 id="2-_用imap"><strong> 2. 用imap </strong></h1><p>在vimrc文件中输入以下代码<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">imap</span><span class="regexp"> ^[OA</span> &lt;ESC&gt;ki  </span><br><span class="line">imap<span class="regexp"> ^[OB</span> &lt;ESC&gt;ji  </span><br><span class="line">imap<span class="regexp"> ^[OC</span> &lt;ESC&gt;li  </span><br><span class="line">imap<span class="regexp"> ^[OD</span> &lt;ESC&gt;hi</span><br></pre></td></tr></table></figure></p>
+<p><strong> 注意，这里的<code>^[</code>要通过<code>&lt;C-v&gt;&lt;ESC&gt;</code>按出来。 </strong><br>嗯，的确是可以了，但是每次按完方向键，都会自动从<code>insert</code>模式回到<code>normal</code>模式，这也还是有点不爽。不过这个方案我还是忍了蛮久。</p>
+<h1 id="3-_好用但不知道原理的解决方案"><strong> 3. 好用但不知道原理的解决方案 </strong></h1><p>最近还是发现<strong> 方案2 </strong>不好用，但给出的解决方案都不能满足我的需求，于是我开始自己尝试。<br>一开始把<code>imap ^{OA &lt;ESC&gt;ki</code>注释掉，发现竟然按<code>up</code>方向键仍然在<code>insert</code>模式，且没有字母<code>A</code>。太棒了，然后我依次把后面几行也注释掉，并尝试，都没什么问题。但注释到最后一行的时候，<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>又跳出来了。好吧，那我试试下面的方案呢？<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">imap</span><span class="regexp"> ^[OE</span> &lt;ESC&gt;hi</span><br></pre></td></tr></table></figure></p>
+<p>这里把D改成E，晕，竟然解决了我的问题，真是好用！但是，原理是啥？<code>imap</code>的映射表现之前很奇怪，而<code>E</code>是不存在的，反而就解决了<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>的问题…如有高人知道原因，请不吝赐教。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-25T07:52:00.000Z"><a href="/2015/09/25/deploy-on-mac/">2015-09-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/09/25/deploy-on-mac/">hexo迁移到OS X</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天继续作，想到自己还有一台Macbook，当然必须是写blog利器啦，所以果断迁移到OSX上。</p>
+<p>说实话，OSX作为开发机，不知道比Windows强到哪里去了，只可惜，工作原因，还是必须在Windows上折腾。</p>
+<p>迁移到OSX上更简单，同样，新建一个自己的Workspace，然后从gitlab上clone下blog源码。<br>当然，在此之前，需要配好.ssh。从Windows上将ssh key文件copy到OSX的<code>~/.ssh</code>目录。</p>
+<p>copy完成后，我很开心的执行<code>git clone</code>，<strong> 然而！！ </strong>，却告诉我ssh key no permission。好吧，我想起来了，Windows上Copy过来的文件默认都是<code>rwxrwxrwx</code>格式的，而<code>~/.ssh</code>下的key要求只有owner有rw权限，其它用户（包括root）都不能有权限，所以，必须执行以下命令</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod <span class="number">600</span> key_name</span><br></pre></td></tr></table></figure>
+<p>然后，就可以开心的<code>git clone</code>了</p>
+<p>具体的搬家方法可以参照<a href="http://billsedison.github.io/2015/09/24/hexo-migration">上一篇文章</a></p>
+<p><strong> P.S. </strong><br><code>hexo</code>竟然不能原生支持internal，所以<code>上一篇文章</code>的超链接地址是我hardcode的。这催生了我要阅读hexo源码，学习hexo的插件机制，顺便借此熟悉下大名鼎鼎的<code>nodejs</code>，加油！</p>
+<p>下面给出2个很好的介绍hexo源码和插件机制的文章</p>
+<ul>
+<li><a href="http://cinvro.com/post/hexo-source-1" target="_blank" rel="external">Hexo源码略读（一）：init.js</a></li>
+<li><a href="http://kyfxbl.iteye.com/blog/2237538" target="_blank" rel="external">Hexo插件机制分析</a></li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-24T06:39:27.000Z"><a href="/2015/09/24/hexo-migration/">2015-09-24</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/09/24/hexo-migration/">hexo 搬家</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>一开始hexo配置在公司电脑上，但平时在家的时候还是自己的笔记本用的比较多，所以决定在笔记本上同步一下自己的Hexo环境。</p>
+<p>笔记本上已经装好了<code>nodejs</code>和<code>hexo</code>，所以这点就不用再折腾了。那么，blog的源码怎么弄到笔记本呢？什么！Copy&amp;Paste? 不行不行，这么low的方法怎么是我这个小码农使用的呢，还是继续git吧。</p>
+<p>github?额，虽然源码也没什么东西，但我还是想建一个private repository，毕竟自己的一亩三分地是自己私人的东西。当然，github也提供private repository，但需要money，而我这么个简单的需求的确没什么花钱的必要。所以，还是用另一个简单好用的github兄弟，gitlab。这个我之前做项目有接触过，所以，继续搞起。</p>
+<p>下面讲讲hexo搬家遇到的一些坑.</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2015/09/24/hexo-migration/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-23T06:54:02.000Z"><a href="/2015/09/23/hello_blog/">2015-09-23</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/09/23/hello_blog/">Hello, blog</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>在浩瀚的代码海洋中，需要有一片自己的领地，让自己可以记录生活，思考自己……</p>
+<p>虽然很久很久以前，自己也写过Blog，但是因为种种原因，还是没有坚持下来。而在这么多年的coding生涯中，发现没有了Blog，会多了很多浮躁，少了很多思考，甚至有一些很好的经验却因为没有记录而随着时间的流逝而流逝，非常可惜。</p>
+<p>甚至，没有了Blog，文字表达能力也有所退化……因此，从现在起，用自己的这一片领地，记录生活，整理自己</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/2015/09/23/hello_blog/#more" class="more-link">阅读全文</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+<nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:billsedison.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/hexo/">hexo</a><small>2</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>1</small></li>
+  
+    <li><a href="/categories/misc/">misc</a><small>1</small></li>
+  
+    <li><a href="/categories/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mac-vim-osx/" style="font-size: 10px;">mac vim osx</a> <a href="/tags/杂项/" style="font-size: 10px;">杂项</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+    <h3 class="title">关于我</h3>
+    <ul class="entry">
+        <li>姓名：bill</li>
+        <li>简介: 刚毕业的小码农，加油ing</li>
+    </ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2250551690&verifier=b987829b&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">IT Blogs</h3>
+<ul class="entry">
+<li><a href="http://blog.codingnow.com/" title="云风的BLOG">云风的BLOG</a></li>
+</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 billsedison
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+  <!--github-->
+  <a href="https://github.com/billsedison"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+
+</body>
+</html>

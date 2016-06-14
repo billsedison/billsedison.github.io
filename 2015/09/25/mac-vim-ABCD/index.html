@@ -1,0 +1,237 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mac-vim 按上下左右出现ABCD | Journey of code</title>
+  <meta name="author" content="billsedison">
+  
+  <meta name="description" content="记录自己，记录生活">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="mac-vim 按上下左右出现ABCD"/>
+  <meta property="og:site_name" content="Journey of code"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Journey of code" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<script>
+    var _hmt = _hmt || [];
+(function() {
+ var hm = document.createElement("script");
+ hm.src = "//hm.baidu.com/hm.js?c76fb683b075a928970178afd59a97df";
+ var s = document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+ })();
+</script>
+
+
+
+
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Journey of code</a></h1>
+  <h2><a href="/">Note code, note life</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">首页</a></li>
+    
+      <li><a href="/archives">归档</a></li>
+    
+      <li><a href="/about">关于</a></li>
+    
+    <li> <a href="/atom.xml">RSS</a> </li>
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-09-25T14:15:39.000Z"><a href="/2015/09/25/mac-vim-ABCD/">2015-09-25</a></time>
+      
+      
+  
+    <h1 class="title">mac-vim 按上下左右出现ABCD</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>今天把hexo迁移到mac上了，写hexo blog的利器自然是vim啦。果断下载自己的vimrc，稍微改改配置就用在了mac上，各种插件和体验都很好。</p>
+<p>然而，我作为vim的非忠实粉丝，还是习惯用<code>up</code>/<code>down</code>/<code>left</code>/<code>right</code>方向键来移动光标，至于<code>k</code>/<code>j</code>/<code>h</code>/<code>l</code>是什么鬼，没听说过。然而，当我愉快地在<code>insert</code>模式下按下方向键时，<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>跳出来了……<strong> 哎!Vim大哥，我不是要唱字母歌的有木有！！！ </strong></p>
+<p>于是，我开始在google大大上搜寻解决方案，其中一篇文章<a href="http://vim.wikia.com/wiki/Fix_arrow_keys_that_display_A_B_C_D_on_remote_shell" target="_blank" rel="external">Fix arrow keys that display A B C D on remote shell</a> 给出了21种解决方案，真是“诚意满满”，然后我开始尝试。下面给出几个有代表性的。</p>
+<h1 id="1-_改变term"><strong> 1. 改变term </strong></h1><p>直接输入<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=<span class="keyword">ansi</span></span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=xterm</span><br></pre></td></tr></table></figure></p>
+<p>嗯，的确解决了问题。哎，等等，我好看的vim主题去哪了，作为外貌协会的我肯定不答应！再换一个。</p>
+<h1 id="2-_用imap"><strong> 2. 用imap </strong></h1><p>在vimrc文件中输入以下代码<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">imap</span><span class="regexp"> ^[OA</span> &lt;ESC&gt;ki  </span><br><span class="line">imap<span class="regexp"> ^[OB</span> &lt;ESC&gt;ji  </span><br><span class="line">imap<span class="regexp"> ^[OC</span> &lt;ESC&gt;li  </span><br><span class="line">imap<span class="regexp"> ^[OD</span> &lt;ESC&gt;hi</span><br></pre></td></tr></table></figure></p>
+<p><strong> 注意，这里的<code>^[</code>要通过<code>&lt;C-v&gt;&lt;ESC&gt;</code>按出来。 </strong><br>嗯，的确是可以了，但是每次按完方向键，都会自动从<code>insert</code>模式回到<code>normal</code>模式，这也还是有点不爽。不过这个方案我还是忍了蛮久。</p>
+<h1 id="3-_好用但不知道原理的解决方案"><strong> 3. 好用但不知道原理的解决方案 </strong></h1><p>最近还是发现<strong> 方案2 </strong>不好用，但给出的解决方案都不能满足我的需求，于是我开始自己尝试。<br>一开始把<code>imap ^{OA &lt;ESC&gt;ki</code>注释掉，发现竟然按<code>up</code>方向键仍然在<code>insert</code>模式，且没有字母<code>A</code>。太棒了，然后我依次把后面几行也注释掉，并尝试，都没什么问题。但注释到最后一行的时候，<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>又跳出来了。好吧，那我试试下面的方案呢？<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">imap</span><span class="regexp"> ^[OE</span> &lt;ESC&gt;hi</span><br></pre></td></tr></table></figure></p>
+<p>这里把D改成E，晕，竟然解决了我的问题，真是好用！但是，原理是啥？<code>imap</code>的映射表现之前很奇怪，而<code>E</code>是不存在的，反而就解决了<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>的问题…如有高人知道原因，请不吝赐教。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/vim/">vim</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/mac-vim-osx/">mac vim osx</a>
+  </div>
+
+        <!--%- partial('post/share') %-->
+
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a></div>
+        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["weixin","tsina","qzone","youdao","renren","tqq"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","youdao","renren","tqq"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<nav id="pagination" >
+    
+        <a href="/2015/09/27/javascript-notes/" class="alignleft prev" >上一页</a>
+    
+    
+        <a href="/2015/09/25/deploy-on-mac/" class="alignright next" >下一页</a>
+    
+    <div class="clearfix"></div>
+</nav>
+
+
+
+<section id="comments">
+<!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="/-2015/09/25/mac-vim-ABCD/" data-title="mac-vim 按上下左右出现ABCD" data-url="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:'billsedison'};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:billsedison.github.io">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/hexo/">hexo</a><small>2</small></li>
+  
+    <li><a href="/categories/javascript/">javascript</a><small>1</small></li>
+  
+    <li><a href="/categories/misc/">misc</a><small>1</small></li>
+  
+    <li><a href="/categories/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/hexo/" style="font-size: 20px;">hexo</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/mac-vim-osx/" style="font-size: 10px;">mac vim osx</a> <a href="/tags/杂项/" style="font-size: 10px;">杂项</a>
+  </div>
+</div>
+
+
+  <div class="widget tag">
+    <h3 class="title">关于我</h3>
+    <ul class="entry">
+        <li>姓名：bill</li>
+        <li>简介: 刚毕业的小码农，加油ing</li>
+    </ul>
+</div>
+
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2250551690&verifier=b987829b&dpc=1"></iframe>
+
+  <div class="widget tag">
+<h3 class="title">IT Blogs</h3>
+<ul class="entry">
+<li><a href="http://blog.codingnow.com/" title="云风的BLOG">云风的BLOG</a></li>
+</ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 billsedison
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+  <!--github-->
+  <a href="https://github.com/billsedison"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+
+</body>
+</html>
