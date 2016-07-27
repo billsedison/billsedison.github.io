@@ -7,22 +7,16 @@
   
   <title>javascript-notes | Journey of code</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)
-
-Function declaration &amp;amp; function expressionNow, whether you define a function like function foo(){} or var foo = function(){">
+  <meta name="description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript-notes">
 <meta property="og:url" content="http://billsedison.github.io/2015/09/27/javascript-notes/index.html">
 <meta property="og:site_name" content="Journey of code">
-<meta property="og:description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)
-
-Function declaration &amp;amp; function expressionNow, whether you define a function like function foo(){} or var foo = function(){">
-<meta property="og:updated_time" content="2015-09-28T14:09:22.000Z">
+<meta property="og:description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)">
+<meta property="og:updated_time" content="2016-07-27T16:09:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript-notes">
-<meta name="twitter:description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)
-
-Function declaration &amp;amp; function expressionNow, whether you define a function like function foo(){} or var foo = function(){">
+<meta name="twitter:description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)">
   
     <link rel="alternative" href="/atom.xml" title="Journey of code" type="application/atom+xml">
   
@@ -376,6 +370,7 @@ if (isWX) {
       
         
         <p>Take notes from this post <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife" target="_blank" rel="external">Immediately-Invoked Function Expression(IIFE)</a></p>
+<a id="more"></a>
 <ol>
 <li><p>Function declaration &amp; function expression<br>Now, whether you define a function like <code>function foo(){}</code> or <code>var foo = function(){}</code>, what you end up with is an identifier for a function, that you can invoke by putting parens (parentheses, ()) after it, like <code>foo()</code>.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Because a function defined like so can be invoked by putting () after</span></span><br><span class="line"><span class="comment">// the function name, like foo(), and because foo is just a reference to</span></span><br><span class="line"><span class="comment">// the function expression `function() &#123; /* code */ &#125;`...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...doesn't it stand to reason that the function expression itself can</span></span><br><span class="line"><span class="comment">// be invoked, just by putting () after it?</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;(); <span class="comment">// SyntaxError: Unexpected token (</span></span><br></pre></td></tr></table></figure>
@@ -409,7 +404,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/27/javascript-notes/" data-id="cir534cjx000bcn8p4r8c7678" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/27/javascript-notes/" data-id="cir537qy60004fm8p8n34zm0n" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/27/javascript-notes/#ds-thread" class="article-comment-link">评论</a>
         

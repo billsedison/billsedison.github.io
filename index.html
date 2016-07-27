@@ -379,7 +379,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2016/07/27/multi-git-account/" data-id="cir534ck3000ecn8p8hsrb7uf" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2016/07/27/multi-git-account/" data-id="cir537qy70005fm8pa7zacs0g" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2016/07/27/multi-git-account/#ds-thread" class="article-comment-link">评论</a>
         
@@ -422,34 +422,12 @@ if (isWX) {
     
     <div class="article-entry" itemprop="articleBody">
       
+        <p>Take notes from this post <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife">Immediately-Invoked Function Expression(IIFE)</a></p>
         
-        <p>Take notes from this post <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife" target="_blank" rel="external">Immediately-Invoked Function Expression(IIFE)</a></p>
-<ol>
-<li><p>Function declaration &amp; function expression<br>Now, whether you define a function like <code>function foo(){}</code> or <code>var foo = function(){}</code>, what you end up with is an identifier for a function, that you can invoke by putting parens (parentheses, ()) after it, like <code>foo()</code>.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Because a function defined like so can be invoked by putting () after</span></span><br><span class="line"><span class="comment">// the function name, like foo(), and because foo is just a reference to</span></span><br><span class="line"><span class="comment">// the function expression `function() &#123; /* code */ &#125;`...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...doesn't it stand to reason that the function expression itself can</span></span><br><span class="line"><span class="comment">// be invoked, just by putting () after it?</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;(); <span class="comment">// SyntaxError: Unexpected token (</span></span><br></pre></td></tr></table></figure>
-<p>As you can see, there’s a catch. When the parser encounters the function keyword in the global scope or inside a function, it treats it as a function declaration (statement), and not as a function expression, by default. If you don’t explicitly tell the parser to expect an expression, it sees what it thinks to be a function declaration without a name and throws a Sounters the function keyword in the global scope or inside a funct)</p>
-</li>
-<li><p>functions, parens, and SyntaxErrors<br>Interestingly enough, if you were to specify a name for that function and put parens immediately after it, the parser would also throw a SyntaxError, but for a different reason. While parens placed after an expression indicate that the expression is a function to be invoked, parens placed after a statement are totally separate from the preceding statment, and are simply a grouping operator (used as a means to control precedence of evaluation).</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// While this function declaration is now syntactically valid, it's still</span></span><br><span class="line"><span class="comment">// a statement, and the following set of parens is invalid because the</span></span><br><span class="line"><span class="comment">// grouping operator needs to contain an expression.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;(); <span class="comment">// SyntaxError: Unexpected token )</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Now, if you put an expression in the parens, no exception is thrown...</span></span><br><span class="line"><span class="comment">// but the function isn't executed either, because this:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;( <span class="number">1</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Is really just equivalent to this, a function declaration followed by a</span></span><br><span class="line"><span class="comment">// completely unrelated expression:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"></span><br><span class="line">( <span class="number">1</span> );</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>The solution: Immediately-Invoked Function Expression (IIFE)<br>Fortunately, the SyntaxError ‘fix’ is simple. The most widely accepted way to tell the parser to expect a function expression is just to wrap it in parens, because in JavaScript, parens can’t contain statements. At this point, when the parser encounters the <code>function</code> keyword, it knows to parse it as a function expression and not a function declaration.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Either of the following two patterns can be used to immediately invoke</span></span><br><span class="line"><span class="comment">// a function expression, utilizing the function's execution context to</span></span><br><span class="line"><span class="comment">// create "privacy."</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;()); <span class="comment">// Crockford recommends this one</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;)(); <span class="comment">// But this one works just as well</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Because the point of the parens or coercing operators is to disambiguate</span></span><br><span class="line"><span class="comment">// between function expressions and function declarations, they can be</span></span><br><span class="line"><span class="comment">// omitted when the parser already expects an expression (but please see the</span></span><br><span class="line"><span class="comment">// "important note" below).</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">10</span>; &#125;();</span><br><span class="line"><span class="literal">true</span> &amp;&amp; <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"><span class="number">0</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// If you don't care about the return value, or the possibility of making</span></span><br><span class="line"><span class="comment">// your code slightly harder to read, you can save a byte by just prefixing</span></span><br><span class="line"><span class="comment">// the function with a unary operator.</span></span><br><span class="line"></span><br><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">~<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">-<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">+<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Here's another variation, from @kuvos - I'm not sure of the performance</span></span><br><span class="line"><span class="comment">// implications, if any, of using the `new` keyword, but it works.</span></span><br><span class="line"><span class="comment">// http://twitter.com/kuvos/status/18209252090847232</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;() <span class="comment">// Only need parens if passing arguments</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>First class<br>something is first-class if it:</p>
-</li>
-</ol>
-<ul>
-<li>can be stored in variables and data structures</li>
-<li>can be passed as a parameter to a subroutine</li>
-<li>can be returned as the result of a subroutine</li>
-<li>can be constructed at runtime</li>
-<li>has intrinsic identity (independent of any given name)</li>
-</ul>
-<p>Closure example<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="function"><span class="keyword">function</span>(<span class="params">newName</span>) </span>&#123;</span><br><span class="line">        name = newName;</span><br><span class="line">    &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>Closure<br>The important thing to realise is that a closure actually remembers its environment rather than its free variables, so if you define a new variable in the environment of the closure after the closure’s definition, it will be accessible inside the closure.</li>
-</ol>
-
+          <p class="article-more-link">
+            <a href="/2015/09/27/javascript-notes/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -457,7 +435,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/27/javascript-notes/" data-id="cir534cjx000bcn8p4r8c7678" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/27/javascript-notes/" data-id="cir537qy60004fm8p8n34zm0n" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/27/javascript-notes/#ds-thread" class="article-comment-link">评论</a>
         
@@ -500,18 +478,14 @@ if (isWX) {
     
     <div class="article-entry" itemprop="articleBody">
       
-        
         <p>今天把hexo迁移到mac上了，写hexo blog的利器自然是vim啦。果断下载自己的vimrc，稍微改改配置就用在了mac上，各种插件和体验都很好。</p>
 <p>然而，我作为vim的非忠实粉丝，还是习惯用<code>up</code>/<code>down</code>/<code>left</code>/<code>right</code>方向键来移动光标，至于<code>k</code>/<code>j</code>/<code>h</code>/<code>l</code>是什么鬼，没听说过。然而，当我愉快地在<code>insert</code>模式下按下方向键时，<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>跳出来了……<strong> 哎!Vim大哥，我不是要唱字母歌的有木有！！！ </strong></p>
-<p>于是，我开始在google大大上搜寻解决方案，其中一篇文章<a href="http://vim.wikia.com/wiki/Fix_arrow_keys_that_display_A_B_C_D_on_remote_shell" target="_blank" rel="external">Fix arrow keys that display A B C D on remote shell</a> 给出了21种解决方案，真是“诚意满满”，然后我开始尝试。下面给出几个有代表性的。</p>
-<h1 id="1-改变term"><a href="#1-改变term" class="headerlink" title=" 1. 改变term "></a><strong> 1. 改变term </strong></h1><p>直接输入<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=<span class="keyword">ansi</span></span><br></pre></td></tr></table></figure></p>
-<p>或者<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=xterm</span><br></pre></td></tr></table></figure></p>
-<p>嗯，的确解决了问题。哎，等等，我好看的vim主题去哪了，作为外貌协会的我肯定不答应！再换一个。</p>
-<h1 id="2-用imap"><a href="#2-用imap" class="headerlink" title=" 2. 用imap "></a><strong> 2. 用imap </strong></h1><p>在vimrc文件中输入以下代码<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">imap</span> ^[OA <span class="symbol">&lt;ESC&gt;</span>ki  </span><br><span class="line"><span class="keyword">imap</span> ^[OB <span class="symbol">&lt;ESC&gt;</span>ji  </span><br><span class="line"><span class="keyword">imap</span> ^[OC <span class="symbol">&lt;ESC&gt;</span>li  </span><br><span class="line"><span class="keyword">imap</span> ^[OD <span class="symbol">&lt;ESC&gt;</span><span class="keyword">hi</span></span><br></pre></td></tr></table></figure></p>
-<p><strong> 注意，这里的<code>^[</code>要通过<code>&lt;C-v&gt;&lt;ESC&gt;</code>按出来。 </strong><br>嗯，的确是可以了，但是每次按完方向键，都会自动从<code>insert</code>模式回到<code>normal</code>模式，这也还是有点不爽。不过这个方案我还是忍了蛮久。</p>
-<h1 id="3-好用但不知道原理的解决方案"><a href="#3-好用但不知道原理的解决方案" class="headerlink" title=" 3. 好用但不知道原理的解决方案 "></a><strong> 3. 好用但不知道原理的解决方案 </strong></h1><p>最近还是发现<strong> 方案2 </strong>不好用，但给出的解决方案都不能满足我的需求，于是我开始自己尝试。<br>一开始把<code>imap ^{OA &lt;ESC&gt;ki</code>注释掉，发现竟然按<code>up</code>方向键仍然在<code>insert</code>模式，且没有字母<code>A</code>。太棒了，然后我依次把后面几行也注释掉，并尝试，都没什么问题。但注释到最后一行的时候，<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>又跳出来了。好吧，那我试试下面的方案呢？<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">imap</span> ^[OE <span class="symbol">&lt;ESC&gt;</span><span class="keyword">hi</span></span><br></pre></td></tr></table></figure></p>
-<p>这里把D改成E，晕，竟然解决了我的问题，真是好用！但是，原理是啥？<code>imap</code>的映射表现之前很奇怪，而<code>E</code>是不存在的，反而就解决了<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>的问题…如有高人知道原因，请不吝赐教。</p>
-
+<p>于是，我开始在google大大上搜寻解决方案，其中一篇文章<a href="http://vim.wikia.com/wiki/Fix_arrow_keys_that_display_A_B_C_D_on_remote_shell">Fix arrow keys that display A B C D on remote shell</a> 给出了21种解决方案，真是“诚意满满”，然后我开始尝试。下面给出几个有代表性的。</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/09/25/mac-vim-ABCD/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -519,7 +493,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac-vim-osx/">mac vim osx</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/" data-id="cir534cjq0008cn8pe1l0mxhx" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/" data-id="cir537qxz0001fm8pi9bzlili" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/#ds-thread" class="article-comment-link">评论</a>
         
@@ -562,21 +536,14 @@ if (isWX) {
     
     <div class="article-entry" itemprop="articleBody">
       
-        
         <p>今天继续作，想到自己还有一台Macbook，当然必须是写blog利器啦，所以果断迁移到OSX上。</p>
 <p>说实话，OSX作为开发机，不知道比Windows强到哪里去了，只可惜，工作原因，还是必须在Windows上折腾。</p>
 <p>迁移到OSX上更简单，同样，新建一个自己的Workspace，然后从gitlab上clone下blog源码。<br>当然，在此之前，需要配好.ssh。从Windows上将ssh key文件copy到OSX的<code>~/.ssh</code>目录。</p>
-<p>copy完成后，我很开心的执行<code>git clone</code>，<strong> 然而！！ </strong>，却告诉我ssh key no permission。好吧，我想起来了，Windows上Copy过来的文件默认都是<code>rwxrwxrwx</code>格式的，而<code>~/.ssh</code>下的key要求只有owner有rw权限，其它用户（包括root）都不能有权限，所以，必须执行以下命令</p>
-<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">chmod</span> <span class="number">600</span> key_name</span><br></pre></td></tr></table></figure>
-<p>然后，就可以开心的<code>git clone</code>了</p>
-<p>具体的搬家方法可以参照<a href="http://billsedison.github.io/2015/09/24/hexo-migration">上一篇文章</a></p>
-<p><strong> P.S. </strong><br><code>hexo</code>竟然不能原生支持internal，所以<code>上一篇文章</code>的超链接地址是我hardcode的。这催生了我要阅读hexo源码，学习hexo的插件机制，顺便借此熟悉下大名鼎鼎的<code>nodejs</code>，加油！</p>
-<p>下面给出2个很好的介绍hexo源码和插件机制的文章</p>
-<ul>
-<li><a href="http://cinvro.com/post/hexo-source-1" target="_blank" rel="external">Hexo源码略读（一）：init.js</a></li>
-<li><a href="http://kyfxbl.iteye.com/blog/2237538" target="_blank" rel="external">Hexo插件机制分析</a></li>
-</ul>
-
+        
+          <p class="article-more-link">
+            <a href="/2015/09/25/deploy-on-mac/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -584,7 +551,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/25/deploy-on-mac/" data-id="cir534cji0006cn8pnk5wm1de" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/25/deploy-on-mac/" data-id="cir537qxu0000fm8pujk02d1y" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/25/deploy-on-mac/#ds-thread" class="article-comment-link">评论</a>
         
@@ -643,7 +610,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/24/hexo-migration/" data-id="cir534cj90002cn8pv7h8so4t" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/24/hexo-migration/" data-id="cir537qyc000afm8pzwnbdtuq" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/24/hexo-migration/#ds-thread" class="article-comment-link">评论</a>
         
@@ -701,7 +668,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂项/">杂项</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/23/hello_blog/" data-id="cir534ciw0000cn8pwg5xmngl" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/23/hello_blog/" data-id="cir537qy90007fm8pblarei3g" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/23/hello_blog/#ds-thread" class="article-comment-link">评论</a>
         

@@ -54,9 +54,10 @@
     <link href="http://billsedison.github.io/2015/09/27/javascript-notes/"/>
     <id>http://billsedison.github.io/2015/09/27/javascript-notes/</id>
     <published>2015-09-27T15:06:36.000Z</published>
-    <updated>2015-09-28T14:09:22.000Z</updated>
+    <updated>2016-07-27T16:09:06.000Z</updated>
     
     <content type="html">&lt;p&gt;Take notes from this post &lt;a href=&quot;http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Immediately-Invoked Function Expression(IIFE)&lt;/a&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Function declaration &amp;amp; function expression&lt;br&gt;Now, whether you define a function like &lt;code&gt;function foo(){}&lt;/code&gt; or &lt;code&gt;var foo = function(){}&lt;/code&gt;, what you end up with is an identifier for a function, that you can invoke by putting parens (parentheses, ()) after it, like &lt;code&gt;foo()&lt;/code&gt;.&lt;/p&gt;
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// Because a function defined like so can be invoked by putting () after&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// the function name, like foo(), and because foo is just a reference to&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// the function expression `function() &amp;#123; /* code */ &amp;#125;`...&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; foo = &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123; &lt;span class=&quot;comment&quot;&gt;/* code */&lt;/span&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// ...doesn&#39;t it stand to reason that the function expression itself can&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// be invoked, just by putting () after it?&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123; &lt;span class=&quot;comment&quot;&gt;/* code */&lt;/span&gt; &amp;#125;(); &lt;span class=&quot;comment&quot;&gt;// SyntaxError: Unexpected token (&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -86,7 +87,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;Take notes from this post &lt;a href=&quot;http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife&quot; target=&quot;_blank&quot; rel=&quot;e
+      &lt;p&gt;Take notes from this post &lt;a href=&quot;http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife&quot;&gt;Immediately-Invoked Function Expression(IIFE)&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -102,11 +103,12 @@
     <link href="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/"/>
     <id>http://billsedison.github.io/2015/09/25/mac-vim-ABCD/</id>
     <published>2015-09-25T14:15:39.000Z</published>
-    <updated>2016-06-13T01:21:43.000Z</updated>
+    <updated>2016-07-27T16:10:02.000Z</updated>
     
     <content type="html">&lt;p&gt;今天把hexo迁移到mac上了，写hexo blog的利器自然是vim啦。果断下载自己的vimrc，稍微改改配置就用在了mac上，各种插件和体验都很好。&lt;/p&gt;
 &lt;p&gt;然而，我作为vim的非忠实粉丝，还是习惯用&lt;code&gt;up&lt;/code&gt;/&lt;code&gt;down&lt;/code&gt;/&lt;code&gt;left&lt;/code&gt;/&lt;code&gt;right&lt;/code&gt;方向键来移动光标，至于&lt;code&gt;k&lt;/code&gt;/&lt;code&gt;j&lt;/code&gt;/&lt;code&gt;h&lt;/code&gt;/&lt;code&gt;l&lt;/code&gt;是什么鬼，没听说过。然而，当我愉快地在&lt;code&gt;insert&lt;/code&gt;模式下按下方向键时，&lt;code&gt;A&lt;/code&gt;/&lt;code&gt;B&lt;/code&gt;/&lt;code&gt;C&lt;/code&gt;/&lt;code&gt;D&lt;/code&gt;跳出来了……&lt;strong&gt; 哎!Vim大哥，我不是要唱字母歌的有木有！！！ &lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;于是，我开始在google大大上搜寻解决方案，其中一篇文章&lt;a href=&quot;http://vim.wikia.com/wiki/Fix_arrow_keys_that_display_A_B_C_D_on_remote_shell&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Fix arrow keys that display A B C D on remote shell&lt;/a&gt; 给出了21种解决方案，真是“诚意满满”，然后我开始尝试。下面给出几个有代表性的。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h1 id=&quot;1-改变term&quot;&gt;&lt;a href=&quot;#1-改变term&quot; class=&quot;headerlink&quot; title=&quot; 1. 改变term &quot;&gt;&lt;/a&gt;&lt;strong&gt; 1. 改变term &lt;/strong&gt;&lt;/h1&gt;&lt;p&gt;直接输入&lt;br&gt;&lt;figure class=&quot;highlight vbnet&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;:&lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt; term=&lt;span class=&quot;keyword&quot;&gt;ansi&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;或者&lt;br&gt;&lt;figure class=&quot;highlight actionscript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;:&lt;span class=&quot;keyword&quot;&gt;set&lt;/span&gt; term=xterm&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;嗯，的确解决了问题。哎，等等，我好看的vim主题去哪了，作为外貌协会的我肯定不答应！再换一个。&lt;/p&gt;
@@ -119,7 +121,8 @@
     <summary type="html">
     
       &lt;p&gt;今天把hexo迁移到mac上了，写hexo blog的利器自然是vim啦。果断下载自己的vimrc，稍微改改配置就用在了mac上，各种插件和体验都很好。&lt;/p&gt;
-&lt;p&gt;然而，我作为vim的非忠实粉丝，还是习惯用&lt;code&gt;up&lt;/code&gt;/&lt;code&gt;down&lt;/code
+&lt;p&gt;然而，我作为vim的非忠实粉丝，还是习惯用&lt;code&gt;up&lt;/code&gt;/&lt;code&gt;down&lt;/code&gt;/&lt;code&gt;left&lt;/code&gt;/&lt;code&gt;right&lt;/code&gt;方向键来移动光标，至于&lt;code&gt;k&lt;/code&gt;/&lt;code&gt;j&lt;/code&gt;/&lt;code&gt;h&lt;/code&gt;/&lt;code&gt;l&lt;/code&gt;是什么鬼，没听说过。然而，当我愉快地在&lt;code&gt;insert&lt;/code&gt;模式下按下方向键时，&lt;code&gt;A&lt;/code&gt;/&lt;code&gt;B&lt;/code&gt;/&lt;code&gt;C&lt;/code&gt;/&lt;code&gt;D&lt;/code&gt;跳出来了……&lt;strong&gt; 哎!Vim大哥，我不是要唱字母歌的有木有！！！ &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;于是，我开始在google大大上搜寻解决方案，其中一篇文章&lt;a href=&quot;http://vim.wikia.com/wiki/Fix_arrow_keys_that_display_A_B_C_D_on_remote_shell&quot;&gt;Fix arrow keys that display A B C D on remote shell&lt;/a&gt; 给出了21种解决方案，真是“诚意满满”，然后我开始尝试。下面给出几个有代表性的。&lt;/p&gt;
     
     </summary>
     
@@ -135,11 +138,12 @@
     <link href="http://billsedison.github.io/2015/09/25/deploy-on-mac/"/>
     <id>http://billsedison.github.io/2015/09/25/deploy-on-mac/</id>
     <published>2015-09-25T07:52:00.000Z</published>
-    <updated>2016-06-13T01:21:43.000Z</updated>
+    <updated>2016-07-27T16:09:39.000Z</updated>
     
     <content type="html">&lt;p&gt;今天继续作，想到自己还有一台Macbook，当然必须是写blog利器啦，所以果断迁移到OSX上。&lt;/p&gt;
 &lt;p&gt;说实话，OSX作为开发机，不知道比Windows强到哪里去了，只可惜，工作原因，还是必须在Windows上折腾。&lt;/p&gt;
 &lt;p&gt;迁移到OSX上更简单，同样，新建一个自己的Workspace，然后从gitlab上clone下blog源码。&lt;br&gt;当然，在此之前，需要配好.ssh。从Windows上将ssh key文件copy到OSX的&lt;code&gt;~/.ssh&lt;/code&gt;目录。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;copy完成后，我很开心的执行&lt;code&gt;git clone&lt;/code&gt;，&lt;strong&gt; 然而！！ &lt;/strong&gt;，却告诉我ssh key no permission。好吧，我想起来了，Windows上Copy过来的文件默认都是&lt;code&gt;rwxrwxrwx&lt;/code&gt;格式的，而&lt;code&gt;~/.ssh&lt;/code&gt;下的key要求只有owner有rw权限，其它用户（包括root）都不能有权限，所以，必须执行以下命令&lt;/p&gt;
 &lt;figure class=&quot;highlight perl&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;chmod&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;600&lt;/span&gt; key_name&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;然后，就可以开心的&lt;code&gt;git clone&lt;/code&gt;了&lt;/p&gt;
@@ -156,7 +160,7 @@
     
       &lt;p&gt;今天继续作，想到自己还有一台Macbook，当然必须是写blog利器啦，所以果断迁移到OSX上。&lt;/p&gt;
 &lt;p&gt;说实话，OSX作为开发机，不知道比Windows强到哪里去了，只可惜，工作原因，还是必须在Windows上折腾。&lt;/p&gt;
-&lt;p&gt;迁移到OSX上更简单，同样，新建一
+&lt;p&gt;迁移到OSX上更简单，同样，新建一个自己的Workspace，然后从gitlab上clone下blog源码。&lt;br&gt;当然，在此之前，需要配好.ssh。从Windows上将ssh key文件copy到OSX的&lt;code&gt;~/.ssh&lt;/code&gt;目录。&lt;/p&gt;
     
     </summary>
     

@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Journey of code">
 <meta property="og:description" content="今天把hexo迁移到mac上了，写hexo blog的利器自然是vim啦。果断下载自己的vimrc，稍微改改配置就用在了mac上，各种插件和体验都很好。
 然而，我作为vim的非忠实粉丝，还是习惯用up/down/left/right方向键来移动光标，至于k/j/h/l是什么鬼，没听说过。然而，当我愉快地在insert模式下按下方向键时，A/B/C/D跳出来了…… 哎!Vim大哥，我不是要唱字母歌的">
-<meta property="og:updated_time" content="2016-06-13T01:21:43.000Z">
+<meta property="og:updated_time" content="2016-07-27T16:10:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac-vim 按上下左右出现ABCD">
 <meta name="twitter:description" content="今天把hexo迁移到mac上了，写hexo blog的利器自然是vim啦。果断下载自己的vimrc，稍微改改配置就用在了mac上，各种插件和体验都很好。
@@ -375,6 +375,7 @@ if (isWX) {
         <p>今天把hexo迁移到mac上了，写hexo blog的利器自然是vim啦。果断下载自己的vimrc，稍微改改配置就用在了mac上，各种插件和体验都很好。</p>
 <p>然而，我作为vim的非忠实粉丝，还是习惯用<code>up</code>/<code>down</code>/<code>left</code>/<code>right</code>方向键来移动光标，至于<code>k</code>/<code>j</code>/<code>h</code>/<code>l</code>是什么鬼，没听说过。然而，当我愉快地在<code>insert</code>模式下按下方向键时，<code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>跳出来了……<strong> 哎!Vim大哥，我不是要唱字母歌的有木有！！！ </strong></p>
 <p>于是，我开始在google大大上搜寻解决方案，其中一篇文章<a href="http://vim.wikia.com/wiki/Fix_arrow_keys_that_display_A_B_C_D_on_remote_shell" target="_blank" rel="external">Fix arrow keys that display A B C D on remote shell</a> 给出了21种解决方案，真是“诚意满满”，然后我开始尝试。下面给出几个有代表性的。</p>
+<a id="more"></a>
 <h1 id="1-改变term"><a href="#1-改变term" class="headerlink" title=" 1. 改变term "></a><strong> 1. 改变term </strong></h1><p>直接输入<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=<span class="keyword">ansi</span></span><br></pre></td></tr></table></figure></p>
 <p>或者<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">set</span> term=xterm</span><br></pre></td></tr></table></figure></p>
 <p>嗯，的确解决了问题。哎，等等，我好看的vim主题去哪了，作为外貌协会的我肯定不答应！再换一个。</p>
@@ -390,7 +391,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mac-vim-osx/">mac vim osx</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/" data-id="cir534cjq0008cn8pe1l0mxhx" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/" data-id="cir537qxz0001fm8pi9bzlili" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/25/mac-vim-ABCD/#ds-thread" class="article-comment-link">评论</a>
         

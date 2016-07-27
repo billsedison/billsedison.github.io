@@ -17,7 +17,7 @@
 <meta property="og:description" content="今天继续作，想到自己还有一台Macbook，当然必须是写blog利器啦，所以果断迁移到OSX上。
 说实话，OSX作为开发机，不知道比Windows强到哪里去了，只可惜，工作原因，还是必须在Windows上折腾。
 迁移到OSX上更简单，同样，新建一个自己的Workspace，然后从gitlab上clone下blog源码。当然，在此之前，需要配好.ssh。从Windows上将ssh key文件copy">
-<meta property="og:updated_time" content="2016-06-13T01:21:43.000Z">
+<meta property="og:updated_time" content="2016-07-27T16:09:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo迁移到OS X">
 <meta name="twitter:description" content="今天继续作，想到自己还有一台Macbook，当然必须是写blog利器啦，所以果断迁移到OSX上。
@@ -378,6 +378,7 @@ if (isWX) {
         <p>今天继续作，想到自己还有一台Macbook，当然必须是写blog利器啦，所以果断迁移到OSX上。</p>
 <p>说实话，OSX作为开发机，不知道比Windows强到哪里去了，只可惜，工作原因，还是必须在Windows上折腾。</p>
 <p>迁移到OSX上更简单，同样，新建一个自己的Workspace，然后从gitlab上clone下blog源码。<br>当然，在此之前，需要配好.ssh。从Windows上将ssh key文件copy到OSX的<code>~/.ssh</code>目录。</p>
+<a id="more"></a>
 <p>copy完成后，我很开心的执行<code>git clone</code>，<strong> 然而！！ </strong>，却告诉我ssh key no permission。好吧，我想起来了，Windows上Copy过来的文件默认都是<code>rwxrwxrwx</code>格式的，而<code>~/.ssh</code>下的key要求只有owner有rw权限，其它用户（包括root）都不能有权限，所以，必须执行以下命令</p>
 <figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">chmod</span> <span class="number">600</span> key_name</span><br></pre></td></tr></table></figure>
 <p>然后，就可以开心的<code>git clone</code>了</p>
@@ -396,7 +397,7 @@ if (isWX) {
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
 
-        <a data-url="http://billsedison.github.io/2015/09/25/deploy-on-mac/" data-id="cir534cji0006cn8pnk5wm1de" class="article-share-link">分享到</a>
+        <a data-url="http://billsedison.github.io/2015/09/25/deploy-on-mac/" data-id="cir537qxu0000fm8pujk02d1y" class="article-share-link">分享到</a>
         
           <a href="http://billsedison.github.io/2015/09/25/deploy-on-mac/#ds-thread" class="article-comment-link">评论</a>
         
