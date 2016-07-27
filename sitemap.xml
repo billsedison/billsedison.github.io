@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://billsedison.github.io/2015/09/25/deploy-on-mac/</loc>
+    <loc>http://billsedison.github.io/2016/07/27/multi-git-account/</loc>
     
-    <lastmod>2016-06-13T01:21:43.000Z</lastmod>
+    <lastmod>2016-07-27T16:03:20.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://billsedison.github.io/2015/09/24/hexo-migration/</loc>
+    <loc>http://billsedison.github.io/2015/09/25/deploy-on-mac/</loc>
     
     <lastmod>2016-06-13T01:21:43.000Z</lastmod>
     
@@ -23,6 +23,13 @@
   </url>
   
   <url>
+    <loc>http://billsedison.github.io/2015/09/24/hexo-migration/</loc>
+    
+    <lastmod>2016-06-13T01:21:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://billsedison.github.io/2015/09/25/mac-vim-ABCD/</loc>
     
     <lastmod>2016-06-13T01:21:43.000Z</lastmod>
@@ -30,7 +37,7 @@
   </url>
   
   <url>
-    <loc>http://billsedison.github.io/about/index.html</loc>
+    <loc>http://billsedison.github.io/all-archives/index.html</loc>
     
     <lastmod>2016-06-13T01:21:43.000Z</lastmod>
     
@@ -44,7 +51,7 @@
   </url>
   
   <url>
-    <loc>http://billsedison.github.io/all-archives/index.html</loc>
+    <loc>http://billsedison.github.io/about/index.html</loc>
     
     <lastmod>2016-06-13T01:21:43.000Z</lastmod>
     

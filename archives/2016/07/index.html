@@ -5,24 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   
-  <title>javascript-notes | Journey of code</title>
+  <title>Archives: 2016/7 | Journey of code</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)
-
-Function declaration &amp;amp; function expressionNow, whether you define a function like function foo(){} or var foo = function(){">
-<meta property="og:type" content="article">
-<meta property="og:title" content="javascript-notes">
-<meta property="og:url" content="http://billsedison.github.io/2015/09/27/javascript-notes/index.html">
+  <meta name="description" content="记录自己，记录生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Journey of code">
+<meta property="og:url" content="http://billsedison.github.io/archives/2016/07/index.html">
 <meta property="og:site_name" content="Journey of code">
-<meta property="og:description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)
-
-Function declaration &amp;amp; function expressionNow, whether you define a function like function foo(){} or var foo = function(){">
-<meta property="og:updated_time" content="2015-09-28T14:09:22.000Z">
+<meta property="og:description" content="记录自己，记录生活">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript-notes">
-<meta name="twitter:description" content="Take notes from this post Immediately-Invoked Function Expression(IIFE)
-
-Function declaration &amp;amp; function expressionNow, whether you define a function like function foo(){} or var foo = function(){">
+<meta name="twitter:title" content="Journey of code">
+<meta name="twitter:description" content="记录自己，记录生活">
   
     <link rel="alternative" href="/atom.xml" title="Journey of code" type="application/atom+xml">
   
@@ -346,107 +339,40 @@ if (isWX) {
 </header>
 
     <div class="outer">
-      <section id="main"><article id="post-javascript-notes" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <h3 href="/2015/09/27/javascript-notes/" class="article-date">
-  <time datetime="2015-09-27T15:06:36.000Z" itemprop="datePublished">2015-09-27</time>
-</h3>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-  <div class="curve-down">
-  <div class="fill-content">
-    
-    
-      <header class="article-header">
-        
+      <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      javascript-notes
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <h3 href="/2016/07/27/multi-git-account/" class="archive-article-date">
+  <time datetime="2016-07-27T15:54:35.000Z" itemprop="datePublished">7月 27</time>
+</h3>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/07/27/multi-git-account/">多账号git配置</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <p>Take notes from this post <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/#iife" target="_blank" rel="external">Immediately-Invoked Function Expression(IIFE)</a></p>
-<ol>
-<li><p>Function declaration &amp; function expression<br>Now, whether you define a function like <code>function foo(){}</code> or <code>var foo = function(){}</code>, what you end up with is an identifier for a function, that you can invoke by putting parens (parentheses, ()) after it, like <code>foo()</code>.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Because a function defined like so can be invoked by putting () after</span></span><br><span class="line"><span class="comment">// the function name, like foo(), and because foo is just a reference to</span></span><br><span class="line"><span class="comment">// the function expression `function() &#123; /* code */ &#125;`...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...doesn't it stand to reason that the function expression itself can</span></span><br><span class="line"><span class="comment">// be invoked, just by putting () after it?</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;(); <span class="comment">// SyntaxError: Unexpected token (</span></span><br></pre></td></tr></table></figure>
-<p>As you can see, there’s a catch. When the parser encounters the function keyword in the global scope or inside a function, it treats it as a function declaration (statement), and not as a function expression, by default. If you don’t explicitly tell the parser to expect an expression, it sees what it thinks to be a function declaration without a name and throws a Sounters the function keyword in the global scope or inside a funct)</p>
-</li>
-<li><p>functions, parens, and SyntaxErrors<br>Interestingly enough, if you were to specify a name for that function and put parens immediately after it, the parser would also throw a SyntaxError, but for a different reason. While parens placed after an expression indicate that the expression is a function to be invoked, parens placed after a statement are totally separate from the preceding statment, and are simply a grouping operator (used as a means to control precedence of evaluation).</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// While this function declaration is now syntactically valid, it's still</span></span><br><span class="line"><span class="comment">// a statement, and the following set of parens is invalid because the</span></span><br><span class="line"><span class="comment">// grouping operator needs to contain an expression.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;(); <span class="comment">// SyntaxError: Unexpected token )</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Now, if you put an expression in the parens, no exception is thrown...</span></span><br><span class="line"><span class="comment">// but the function isn't executed either, because this:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;( <span class="number">1</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">// Is really just equivalent to this, a function declaration followed by a</span></span><br><span class="line"><span class="comment">// completely unrelated expression:</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"></span><br><span class="line">( <span class="number">1</span> );</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>The solution: Immediately-Invoked Function Expression (IIFE)<br>Fortunately, the SyntaxError ‘fix’ is simple. The most widely accepted way to tell the parser to expect a function expression is just to wrap it in parens, because in JavaScript, parens can’t contain statements. At this point, when the parser encounters the <code>function</code> keyword, it knows to parse it as a function expression and not a function declaration.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Either of the following two patterns can be used to immediately invoke</span></span><br><span class="line"><span class="comment">// a function expression, utilizing the function's execution context to</span></span><br><span class="line"><span class="comment">// create "privacy."</span></span><br><span class="line"></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;()); <span class="comment">// Crockford recommends this one</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;)(); <span class="comment">// But this one works just as well</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Because the point of the parens or coercing operators is to disambiguate</span></span><br><span class="line"><span class="comment">// between function expressions and function declarations, they can be</span></span><br><span class="line"><span class="comment">// omitted when the parser already expects an expression (but please see the</span></span><br><span class="line"><span class="comment">// "important note" below).</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> i = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">10</span>; &#125;();</span><br><span class="line"><span class="literal">true</span> &amp;&amp; <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"><span class="number">0</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// If you don't care about the return value, or the possibility of making</span></span><br><span class="line"><span class="comment">// your code slightly harder to read, you can save a byte by just prefixing</span></span><br><span class="line"><span class="comment">// the function with a unary operator.</span></span><br><span class="line"></span><br><span class="line">!<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">~<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">-<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line">+<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Here's another variation, from @kuvos - I'm not sure of the performance</span></span><br><span class="line"><span class="comment">// implications, if any, of using the `new` keyword, but it works.</span></span><br><span class="line"><span class="comment">// http://twitter.com/kuvos/status/18209252090847232</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;</span><br><span class="line"><span class="keyword">new</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">/* code */</span> &#125;() <span class="comment">// Only need parens if passing arguments</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>First class<br>something is first-class if it:</p>
-</li>
-</ol>
-<ul>
-<li>can be stored in variables and data structures</li>
-<li>can be passed as a parameter to a subroutine</li>
-<li>can be returned as the result of a subroutine</li>
-<li>can be constructed at runtime</li>
-<li>has intrinsic identity (independent of any given name)</li>
-</ul>
-<p>Closure example<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [<span class="function"><span class="keyword">function</span>(<span class="params">newName</span>) </span>&#123;</span><br><span class="line">        name = newName;</span><br><span class="line">    &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ol>
-<li>Closure<br>The important thing to realise is that a closure actually remembers its environment rather than its free variables, so if you define a new variable in the environment of the closure after the closure’s definition, it will be accessible inside the closure.</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <div class="article-footer-content">
-        
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-
-        <a data-url="http://billsedison.github.io/2015/09/27/javascript-notes/" data-id="cir530gv4000aa68p6wlrq6iu" class="article-share-link">分享到</a>
-        
-          <a href="http://billsedison.github.io/2015/09/27/javascript-notes/#ds-thread" class="article-comment-link">评论</a>
-        
-      </div>
-    </footer>
+    </header>
   </div>
-  </div>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/07/27/multi-git-account/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          多账号git配置
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/09/25/mac-vim-ABCD/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">mac-vim 按上下左右出现ABCD</div>
-    </a>
-  
-</nav>
-
-  
 </article>
-
-
-  <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="2015/09/27/javascript-notes/" data-title="javascript-notes" data-url="http://billsedison.github.io/2015/09/27/javascript-notes/"></div>
-  </section>
-
+  
+  
+    </div></section>
+  
+  
 </section>
       
       <aside id="sidebar">
